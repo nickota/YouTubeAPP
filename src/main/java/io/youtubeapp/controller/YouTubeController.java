@@ -14,9 +14,14 @@ public class YouTubeController {
 		return "youtube";
 	}
 	
-	@RequestMapping(value="youtube",method=RequestMethod.POST)
+	@RequestMapping(value="/youtube",method=RequestMethod.POST)
 	public String searchMovies(@RequestParam("keyword")String keyword, Model model) {
 		model.addAttribute("keyword",keyword);
 		return "searchResults";
+	}
+	
+	@RequestMapping("/")
+	public String home(Model model) {
+		return "redirect:youtube";
 	}
 }
