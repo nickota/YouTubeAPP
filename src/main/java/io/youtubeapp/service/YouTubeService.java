@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import io.youtubeapp.model.YouTubeVideo;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -13,13 +15,14 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 
+@Service
 public class YouTubeService {
 	
 	private static final String API_KEY = "AIzaSyCPxnc8_VVMyps0dqiks6IBZw6dbjt7ENU";
 	private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
 	private static YouTube youtube;
 	//refs https://developers.google.com/youtube/v3/getting-started#fields
-	private static final String YOUTUBE_SEARCH_FIELDS = "items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)";
+	private static final String YOUTUBE_SEARCH_FIELDS = "items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url,snippet/publishedAt,snippet/description)";
 
 	public List<YouTubeVideo> searchVideos(String queryTerm){
 		List<YouTubeVideo> videos = new ArrayList<>();
