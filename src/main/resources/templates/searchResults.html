@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
-	<body>
-		<div th:text="${videos}"></div>
-	</body>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Search Results</h1>
+	<p><span th:text="${numberOfVideos}"></span> search results for the keyword "<span th:text="${keyword}"></span>".</p>
+	<ul th:each="video : ${videos}">
+		<li>
+			<img th:src="${video.thumbnailUrl}">
+		</li>
+	</ul>
+</body>
 </html>

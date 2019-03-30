@@ -29,7 +29,9 @@ public class YouTubeController {
 		List<YouTubeVideo> videos = new ArrayList<>();
 		videos = youtubeService.searchVideos(keyword);
 		
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("videos", videos);
+		model.addAttribute("numberOfVideos", videos.size());
 		return "searchResults";
 	}
 	
