@@ -14,6 +14,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.Video;
+import com.google.api.services.youtube.model.VideoListResponse;
 
 @Service
 public class YouTubeService {
@@ -22,10 +24,13 @@ public class YouTubeService {
 	private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
 	private static YouTube youtube;
 	//refs https://developers.google.com/youtube/v3/getting-started#fields
-	private static final String YOUTUBE_SEARCH_FIELDS = "items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url,snippet/publishedAt,snippet/description)";
-
+	private static final String YOUTUBE_SEARCH_FIELDS = "items(id/videoId)";
+	//you only can set "id, snippet"
+	private static final String YOUTUBE_SEARCH_PARTS = "id, snippet";
+	private static final String YOUTUBE_VIDEO_PARTS = "snippet, statistics";
+	
 	public List<YouTubeVideo> searchVideos(String queryTerm){
-		List<YouTubeVideo> videos = new ArrayList<>();
+		List<YouTubeVideo> youtubeVideos = new ArrayList<>();
 		
 		try {
 			youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
@@ -33,7 +38,7 @@ public class YouTubeService {
 				}
 			}).setApplicationName("youtube-cmdline-search-sample").build();		
 
-			YouTube.Search.List search = youtube.search().list("id,snippet");
+			YouTube.Search.List search = youtube.search().list(YOUTUBE_SEARCH_PARTS);
 
 			//set terms to connect API
 			search.setKey(API_KEY);
@@ -43,29 +48,45 @@ public class YouTubeService {
 			search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 			
 			//execute search
-			//refs Search.java
+			//refs Search.java(https://developers.google.com/youtube/v3/docs/search/list)
 			SearchListResponse searchResponse = search.execute();
 			List<SearchResult> searchResultList = searchResponse.getItems();
-
+			
+			//make list of videoIds to get statistics
+			//connection to API should be necessary only once
+			List<String> videoIds = new ArrayList<String>();
 			for (SearchResult searchResult : searchResultList) {
-				YouTubeVideo video = new YouTubeVideo();
-				video.setTitle(searchResult.getSnippet().getTitle());
-				video.setUrl(createUrl(searchResult.getId().getVideoId()));
-				video.setThumbnailUrl(searchResult.getSnippet().getThumbnails().getDefault().getUrl());
-				video.setPublishDate(searchResult.getSnippet().getPublishedAt().toString());
-				video.setDescription(searchResult.getSnippet().getDescription());
-				videos.add(video);
+				videoIds.add(searchResult.getId().getVideoId());
 			}
-
+			
+			//get videos by videoId
+			YouTube.Videos.List videoRequestList = youtube.videos().list(YOUTUBE_VIDEO_PARTS);
+			
+			//set terms to connect API
+			videoRequestList.setKey(API_KEY);
+			videoRequestList.setId(String.join(", ", videoIds));
+			
+			VideoListResponse videoResponse = videoRequestList.execute(); 
+			
+			List<Video> videoList = videoResponse.getItems();
+			for (Video video : videoList) {
+				YouTubeVideo youtubeVideo = new YouTubeVideo();
+				youtubeVideo.setTitle(video.getSnippet().getTitle());
+				youtubeVideo.setUrl(createUrl(video.getId()));
+				youtubeVideo.setThumbnailUrl(video.getSnippet().getThumbnails().getDefault().getUrl());
+				youtubeVideo.setPublishDate(video.getSnippet().getPublishedAt().toString());
+				youtubeVideo.setDescription(video.getSnippet().getDescription());
+				youtubeVideo.setViewCount(video.getStatistics().getViewCount());
+				youtubeVideos.add(youtubeVideo);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return videos;
+		return youtubeVideos;
 	}
 	
 	public String createUrl(String videoId) {
 		//Below is the relation between videoid and url
 		return "http://www.youtube.com/embed/" + videoId;
 	}
-	
 }
