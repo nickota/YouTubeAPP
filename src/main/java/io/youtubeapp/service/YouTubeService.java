@@ -65,7 +65,7 @@ public class YouTubeService {
 	
 	public String createUrl(String videoId) {
 		//Below is the relation between videoid and url
-		return "https://www.youtube.com/watch?v=" + videoId;
+		return "http://www.youtube.com/embed/" + videoId;
 	}
 	
 }
