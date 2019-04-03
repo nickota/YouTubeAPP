@@ -16,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_style.min.css">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script src="/js/iframe.js" th:src="@{/js/iframe.js}"></script>
 <title>Insert title here</title>
 </head>
 </head>
@@ -35,11 +36,14 @@
 			</div>
 			<div class="row mt-5 align-items-center justify-content-center">
 				<section class="result-container" th:each="video : ${videos}">
-					<figure class="image">
+					<!--<figure class="image">
 						<img th:src="${video.thumbnailUrl}">
 						<span class="watch-later"><i class="fas fa-clock"></i></span>
 						<span class="play"><i class="fas fa-play"></i></span>
-					</figure>
+					</figure>-->
+					<iframe id="player" type="text/html" width="246" height="138"
+						src="'http://www.youtube.com/embed/' + ${video.videoId} + '?enablejsapi=1&origin=http://example.com'"
+						frameborder="0"></iframe>
 					<div class="result-details">
 						<h1 th:text="${video.title}">Title Text</h1>
 						<span class="by">Farq</span> <span class="views">598K views</span>
