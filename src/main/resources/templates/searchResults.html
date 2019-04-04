@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/css/searchResults.css" th:href="@{/css/searchResults.css}"
+	rel="stylesheet"></link>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/css/froala_blocks.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_editor.pkgd.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_style.min.css">
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<title>Insert title here</title>
+</head>
+</head>
+<body>
+	<section class="fdb-block fp-active"
+		style="background-image: url(https://cdn.jsdelivr.net/gh/froala/design-blocks@2.0.1/dist/imgs//shapes/9.svg);"
+		data-block-type="testimonials" data-id="1">
+		<div class="container">
+			<div class="row text-center justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7" style="z-index: 10000;">
+					<h1 style="text-align: left;">Search Results</h1>
+					<p class="lead" style="text-align: left;">
+						<span th:text="${numberOfVideos}"></span> search results for the
+						keyword "<span th:text="${keyword}"></span>".
+					</p>
+				</div>
+			</div>
+
+			<div class="row mt-5 align-items-center justify-content-center">
+				<section class="result-container" th:each="video : ${videos}">
+					<figure class="image">
+						<img th:src="${video.thumbnailUrl}">
+						<span class="watch-later"><i class="fas fa-clock"></i></span>
+						<span class="play"><i class="fas fa-play"></i></span>
+					</figure>
+					<div class="result-details">
+						<h1 th:text="${video.title}">Title Text</h1>
+						<span class="by">Farq</span> <span class="views">598K views</span>
+						<span class="posted">8 years ago</span>
+						<p th:text="${video.description}" class="description"></p>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.pkgd.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+	<div class="fr-toolbar fr-desktop fr-inline"
+		style="z-index: 10001; display: none; top: 227.797px; left: 542px;">
+		<span class="fr-arrow" style="margin-left: -5px;"></span>
+		<button id="bold-1" type="button" tabindex="-1" role="button"
+			aria-pressed="false" title="Bold (竚錬)"
+			class="fr-command fr-btn fr-btn-font_awesome_5" data-cmd="bold">
+			<svg class="svg-inline--fa fa-bold fa-w-12" aria-hidden="true"
+				data-prefix="fas" data-icon="bold" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M304.793 243.891c33.639-18.537 53.657-54.16 53.657-95.693 0-48.236-26.25-87.626-68.626-104.179C265.138 34.01 240.849 32 209.661 32H24c-8.837 0-16 7.163-16 16v33.049c0 8.837 7.163 16 16 16h33.113v318.53H24c-8.837 0-16 7.163-16 16V464c0 8.837 7.163 16 16 16h195.69c24.203 0 44.834-1.289 66.866-7.584C337.52 457.193 376 410.647 376 350.014c0-52.168-26.573-91.684-71.207-106.123zM142.217 100.809h67.444c16.294 0 27.536 2.019 37.525 6.717 15.828 8.479 24.906 26.502 24.906 49.446 0 35.029-20.32 56.79-53.029 56.79h-76.846V100.809zm112.642 305.475c-10.14 4.056-22.677 4.907-31.409 4.907h-81.233V281.943h84.367c39.645 0 63.057 25.38 63.057 63.057.001 28.425-13.66 52.483-34.782 61.284z"></path></svg>
+			<!-- <i class="fas fa-bold" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Bold</span>
+		</button>
+		<button id="italic-1" type="button" tabindex="-1" role="button"
+			aria-pressed="false" title="Italic (竚露)"
+			class="fr-command fr-btn fr-btn-font_awesome_5" data-cmd="italic">
+			<svg class="svg-inline--fa fa-italic fa-w-10" aria-hidden="true"
+				data-prefix="fas" data-icon="italic" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M204.758 416h-33.849l62.092-320h40.725a16 16 0 0 0 15.704-12.937l6.242-32C297.599 41.184 290.034 32 279.968 32H120.235a16 16 0 0 0-15.704 12.937l-6.242 32C96.362 86.816 103.927 96 113.993 96h33.846l-62.09 320H46.278a16 16 0 0 0-15.704 12.935l-6.245 32C22.402 470.815 29.967 480 40.034 480h158.479a16 16 0 0 0 15.704-12.935l6.245-32c1.927-9.88-5.638-19.065-15.704-19.065z"></path></svg>
+			<!-- <i class="fas fa-italic" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Italic</span>
+		</button>
+		<button id="color-1" type="button" tabindex="-1" role="button"
+			class="fr-command fr-btn fr-btn-font_awesome_5" data-cmd="color"
+			data-popup="true">
+			<svg class="svg-inline--fa fa-tint fa-w-11" aria-hidden="true"
+				data-prefix="fas" data-icon="tint" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z"></path></svg>
+			<!-- <i class="fas fa-tint" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Colors</span>
+		</button>
+		<button id="paragraphFormat-1" type="button" tabindex="-1"
+			role="button" aria-controls="dropdown-menu-paragraphFormat-1"
+			aria-expanded="false" aria-haspopup="true"
+			class="fr-command fr-btn fr-dropdown fr-btn-font_awesome_5 fr-selection"
+			data-cmd="paragraphFormat">
+			<svg class="svg-inline--fa fa-paragraph fa-w-14" aria-hidden="true"
+				data-prefix="fas" data-icon="paragraph" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M408 32H177.531C88.948 32 16.045 103.335 16 191.918 15.956 280.321 87.607 352 176 352v104c0 13.255 10.745 24 24 24h32c13.255 0 24-10.745 24-24V112h32v344c0 13.255 10.745 24 24 24h32c13.255 0 24-10.745 24-24V112h40c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24z"></path></svg>
+			<!-- <i class="fas fa-paragraph" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Paragraph Format</span>
+		</button>
+		<div id="dropdown-menu-paragraphFormat-1" class="fr-dropdown-menu"
+			role="listbox" aria-labelledby="paragraphFormat-1" aria-hidden="true">
+			<div class="fr-dropdown-wrapper" role="presentation">
+				<div class="fr-dropdown-content" role="presentation">
+					<ul class="fr-dropdown-list" role="presentation">
+						<li role="presentation"><p
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="N" title="Normal">Normal</a>
+							</p></li>
+						<li role="presentation"><h1
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="H1" title="Heading 1">Heading
+									1</a>
+							</h1></li>
+						<li role="presentation"><h2
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="H2" title="Heading 2">Heading
+									2</a>
+							</h2></li>
+						<li role="presentation"><h3
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="H3" title="Heading 3">Heading
+									3</a>
+							</h3></li>
+						<li role="presentation"><h4
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="H4" title="Heading 4">Heading
+									4</a>
+							</h4></li>
+						<li role="presentation"><pre
+								style="padding: 0 !important; margin: 0 !important;"
+								role="presentation">
+								<a class="fr-command" tabindex="-1" role="option"
+									data-cmd="paragraphFormat" data-param1="PRE" title="Code">Code</a>
+							</pre></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<button id="align-1" type="button" tabindex="-1" role="button"
+			aria-controls="dropdown-menu-align-1" aria-expanded="false"
+			aria-haspopup="true"
+			class="fr-command fr-btn fr-dropdown fr-btn-font_awesome_5"
+			data-cmd="align">
+			<svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true"
+				data-prefix="fas" data-icon="align-left" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg>
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+			<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Align</span>
+		</button>
+		<div id="dropdown-menu-align-1" class="fr-dropdown-menu"
+			role="listbox" aria-labelledby="align-1" aria-hidden="true"
+			style="left: 172px; top: 38px;">
+			<div class="fr-dropdown-wrapper" role="presentation">
+				<div class="fr-dropdown-content" role="presentation">
+					<ul class="fr-dropdown-list" role="presentation">
+						<li role="presentation"><a class="fr-command fr-title"
+							tabindex="-1" role="option" data-cmd="align" data-param1="left"
+							aria-selected="false"><svg
+									class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true"
+									data-prefix="fas" data-icon="align-left" role="img"
+									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+									data-fa-i2svg="">
+									<path fill="currentColor"
+										d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg>
+								<!-- <i class="fas fa-align-left" aria-hidden="true"></i> -->
+								<span class="fr-sr-only">Align Left</span></a></li>
+						<li role="presentation"><a
+							class="fr-command fr-title fr-active" tabindex="-1" role="option"
+							data-cmd="align" data-param1="center" aria-selected="true"><svg
+									class="svg-inline--fa fa-align-center fa-w-14"
+									aria-hidden="true" data-prefix="fas" data-icon="align-center"
+									role="img" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 448 512" data-fa-i2svg="">
+									<path fill="currentColor"
+										d="M352 44v40c0 8.837-7.163 16-16 16H112c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h224c8.837 0 16 7.163 16 16zM16 228h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm320-200H112c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h224c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg>
+								<!-- <i class="fas fa-align-center" aria-hidden="true"></i> -->
+								<span class="fr-sr-only">Align Center</span></a></li>
+						<li role="presentation"><a class="fr-command fr-title"
+							tabindex="-1" role="option" data-cmd="align" data-param1="right"
+							title="Align Right" aria-selected="false"><svg
+									class="svg-inline--fa fa-align-right fa-w-14"
+									aria-hidden="true" data-prefix="fas" data-icon="align-right"
+									role="img" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 448 512" data-fa-i2svg="">
+									<path fill="currentColor"
+										d="M160 84V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H176c-8.837 0-16-7.163-16-16zM16 228h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm160-128h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H176c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+								<!-- <i class="fas fa-align-right" aria-hidden="true"></i> -->
+								<span class="fr-sr-only">Align Right</span></a></li>
+						<li role="presentation"><a class="fr-command fr-title"
+							tabindex="-1" role="option" data-cmd="align"
+							data-param1="justify" title="Align Justify" aria-selected="false"><svg
+									class="svg-inline--fa fa-align-justify fa-w-14"
+									aria-hidden="true" data-prefix="fas" data-icon="align-justify"
+									role="img" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 448 512" data-fa-i2svg="">
+									<path fill="currentColor"
+										d="M0 84V44c0-8.837 7.163-16 16-16h416c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16zm16 144h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0-128h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+								<!-- <i class="fas fa-align-justify" aria-hidden="true"></i> -->
+								<span class="fr-sr-only">Align Justify</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="fr-separator fr-hs" role="separator"
+			aria-orientation="horizontal"></div>
+		<button id="emoticons-1" type="button" tabindex="-1" role="button"
+			class="fr-command fr-btn fr-btn-font_awesome_5" data-cmd="emoticons"
+			data-popup="true">
+			<svg class="svg-inline--fa fa-smile fa-w-16" aria-hidden="true"
+				data-prefix="fas" data-icon="smile" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm80 168c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm-160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm194.8 170.2C334.3 380.4 292.5 400 248 400s-86.3-19.6-114.8-53.8c-13.6-16.3 11-36.7 24.6-20.5 22.4 26.9 55.2 42.2 90.2 42.2s67.8-15.4 90.2-42.2c13.4-16.2 38.1 4.2 24.6 20.5z"></path></svg>
+			<!-- <i class="fas fa-smile" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Emoticons</span>
+		</button>
+		<button id="insertLink-1" type="button" tabindex="-1" role="button"
+			class="fr-command fr-btn fr-btn-font_awesome_5" data-cmd="insertLink"
+			data-popup="true">
+			<svg class="svg-inline--fa fa-link fa-w-16" aria-hidden="true"
+				data-prefix="fas" data-icon="link" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path></svg>
+			<!-- <i class="fas fa-link" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Insert Link</span>
+		</button>
+		<button id="insertImage-1" type="button" tabindex="-1" role="button"
+			class="fr-command fr-btn fr-btn-font_awesome_5"
+			data-cmd="insertImage" data-popup="true">
+			<svg class="svg-inline--fa fa-image fa-w-16" aria-hidden="true"
+				data-prefix="fas" data-icon="image" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"></path></svg>
+			<!-- <i class="fas fa-image" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Insert Image</span>
+		</button>
+		<button id="undo-1" type="button" tabindex="-1" role="button"
+			aria-disabled="false" class="fr-command fr-btn fr-btn-font_awesome_5"
+			data-cmd="undo">
+			<svg class="svg-inline--fa fa-undo fa-w-16" aria-hidden="true"
+				data-prefix="fas" data-icon="undo" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z"></path></svg>
+			<!-- <i class="fas fa-undo" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Undo</span>
+		</button>
+		<button id="redo-1" type="button" tabindex="-1" role="button"
+			aria-disabled="true" title="Redo (竚倪�ｧZ)"
+			class="fr-command fr-btn fr-btn-font_awesome_5 fr-disabled"
+			data-cmd="redo">
+			<svg class="svg-inline--fa fa-redo fa-w-16" aria-hidden="true"
+				data-prefix="fas" data-icon="redo" role="img"
+				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+				data-fa-i2svg="">
+				<path fill="currentColor"
+					d="M500.333 0h-47.411c-6.853 0-12.314 5.729-11.986 12.574l3.966 82.759C399.416 41.899 331.672 8 256.001 8 119.34 8 7.899 119.526 8 256.187 8.101 393.068 119.096 504 256 504c63.926 0 122.202-24.187 166.178-63.908 5.113-4.618 5.354-12.561.482-17.433l-33.971-33.971c-4.466-4.466-11.64-4.717-16.38-.543C341.308 415.448 300.606 432 256 432c-97.267 0-176-78.716-176-176 0-97.267 78.716-176 176-176 60.892 0 114.506 30.858 146.099 77.8l-101.525-4.865c-6.845-.328-12.574 5.133-12.574 11.986v47.411c0 6.627 5.373 12 12 12h200.333c6.627 0 12-5.373 12-12V12c0-6.627-5.373-12-12-12z"></path></svg>
+			<!-- <i class="fas fa-redo" aria-hidden="true"></i> -->
+			<span class="fr-sr-only">Redo</span>
+		</button>
+	</div>
+	<div class="fr-tooltip"
+		style="left: -3000px; top: 311px; position: fixed;">Align Left</div>
+	<div class="fr-popup fr-desktop fr-inline"
+		style="z-index: 10004; left: 860px; top: 326.297px;">
+		<span class="fr-arrow" style="margin-left: -5px;"></span>
+		<div class="fr-buttons fr-emoticons-buttons">
+			<button id="emoticonsBack-10" type="button" tabindex="-1"
+				role="button" title="Back"
+				class="fr-command fr-btn fr-btn-font_awesome_5 fr-back"
+				data-cmd="emoticonsBack">
+				<svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true"
+					data-prefix="fas" data-icon="arrow-left" role="img"
+					xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+					data-fa-i2svg="">
+					<path fill="currentColor"
+						d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg>
+				<!-- <i class="fas fa-arrow-left" aria-hidden="true"></i> -->
+				<span class="fr-sr-only">Back</span>
+			</button>
+			<div class="fr-separator fr-vs" role="separator"
+				aria-orientation="vertical"></div>
+		</div>
+		<div style="text-align: center">
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Grinning face" role="button"
+				data-param1="1f600"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg"><span
+				class="fr-sr-only">Grinning face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Grinning face with smiling eyes"
+				role="button" data-param1="1f601"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f601.svg"><span
+				class="fr-sr-only">Grinning face with smiling
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face with tears of joy" role="button" data-param1="1f602"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f602.svg"><span
+				class="fr-sr-only">Face with tears of joy&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Smiling face with open mouth"
+				role="button" data-param1="1f603"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f603.svg"><span
+				class="fr-sr-only">Smiling face with open
+					mouth&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Smiling face with open mouth and smiling eyes" role="button"
+				data-param1="1f604"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg"><span
+				class="fr-sr-only">Smiling face with open mouth and smiling
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Smiling face with open mouth and cold sweat" role="button"
+				data-param1="1f605"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f605.svg"><span
+				class="fr-sr-only">Smiling face with open mouth and cold
+					sweat&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Smiling face with open mouth and tightly-closed eyes"
+				role="button" data-param1="1f606"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f606.svg"><span
+				class="fr-sr-only">Smiling face with open mouth and
+					tightly-closed eyes&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Smiling face with halo"
+				role="button" data-param1="1f607"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f607.svg"><span
+				class="fr-sr-only">Smiling face with halo&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Smiling face with horns"
+				role="button" data-param1="1f608"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f608.svg"><span
+				class="fr-sr-only">Smiling face with horns&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Winking face" role="button"
+				data-param1="1f609"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f609.svg"><span
+				class="fr-sr-only">Winking face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Smiling face with smiling eyes"
+				role="button" data-param1="1f60a"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60a.svg"><span
+				class="fr-sr-only">Smiling face with smiling
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face savoring delicious food" role="button"
+				data-param1="1f60b"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60b.svg"><span
+				class="fr-sr-only">Face savoring delicious
+					food&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon" title="Relieved face"
+				role="button" data-param1="1f60c"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60c.svg"><span
+				class="fr-sr-only">Relieved face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon"
+				title="Smiling face with heart-shaped eyes" role="button"
+				data-param1="1f60d"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60d.svg"><span
+				class="fr-sr-only">Smiling face with heart-shaped
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Smiling face with sunglasses" role="button"
+				data-param1="1f60e"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60e.svg"><span
+				class="fr-sr-only">Smiling face with
+					sunglasses&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon" title="Smirking face"
+				role="button" data-param1="1f60f"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60f.svg"><span
+				class="fr-sr-only">Smirking face&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Neutral face" role="button"
+				data-param1="1f610"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f610.svg"><span
+				class="fr-sr-only">Neutral face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Expressionless face" role="button"
+				data-param1="1f611"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f611.svg"><span
+				class="fr-sr-only">Expressionless face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Unamused face" role="button"
+				data-param1="1f612"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f612.svg"><span
+				class="fr-sr-only">Unamused face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face with cold sweat" role="button"
+				data-param1="1f613"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f613.svg"><span
+				class="fr-sr-only">Face with cold sweat&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Pensive face" role="button"
+				data-param1="1f614"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f614.svg"><span
+				class="fr-sr-only">Pensive face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Confused face" role="button"
+				data-param1="1f615"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f615.svg"><span
+				class="fr-sr-only">Confused face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Confounded face" role="button"
+				data-param1="1f616"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f616.svg"><span
+				class="fr-sr-only">Confounded face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Kissing face" role="button"
+				data-param1="1f617"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f617.svg"><span
+				class="fr-sr-only">Kissing face&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face throwing a kiss" role="button"
+				data-param1="1f618"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f618.svg"><span
+				class="fr-sr-only">Face throwing a kiss&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Kissing face with smiling eyes"
+				role="button" data-param1="1f619"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f619.svg"><span
+				class="fr-sr-only">Kissing face with smiling
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Kissing face with closed eyes" role="button"
+				data-param1="1f61a"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61a.svg"><span
+				class="fr-sr-only">Kissing face with closed
+					eyes&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face with stuck out tongue" role="button" data-param1="1f61b"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61b.svg"><span
+				class="fr-sr-only">Face with stuck out
+					tongue&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face with stuck out tongue and winking eye" role="button"
+				data-param1="1f61c"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61c.svg"><span
+				class="fr-sr-only">Face with stuck out tongue and winking
+					eye&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face with stuck out tongue and tightly-closed eyes"
+				role="button" data-param1="1f61d"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61d.svg"><span
+				class="fr-sr-only">Face with stuck out tongue and
+					tightly-closed eyes&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Disappointed face" role="button"
+				data-param1="1f61e"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61e.svg"><span
+				class="fr-sr-only">Disappointed face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Worried face" role="button"
+				data-param1="1f61f"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61f.svg"><span
+				class="fr-sr-only">Worried face&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Angry face" role="button"
+				data-param1="1f620"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f620.svg"><span
+				class="fr-sr-only">Angry face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Pouting face" role="button"
+				data-param1="1f621"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f621.svg"><span
+				class="fr-sr-only">Pouting face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Crying face" role="button"
+				data-param1="1f622"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f622.svg"><span
+				class="fr-sr-only">Crying face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Persevering face" role="button"
+				data-param1="1f623"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f623.svg"><span
+				class="fr-sr-only">Persevering face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face with look of triumph"
+				role="button" data-param1="1f624"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f624.svg"><span
+				class="fr-sr-only">Face with look of
+					triumph&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Disappointed but relieved face" role="button"
+				data-param1="1f625"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f625.svg"><span
+				class="fr-sr-only">Disappointed but relieved
+					face&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Frowning face with open mouth" role="button"
+				data-param1="1f626"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f626.svg"><span
+				class="fr-sr-only">Frowning face with open
+					mouth&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon" title="Anguished face"
+				role="button" data-param1="1f627"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f627.svg"><span
+				class="fr-sr-only">Anguished face&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Fearful face" role="button"
+				data-param1="1f628"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f628.svg"><span
+				class="fr-sr-only">Fearful face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Weary face" role="button"
+				data-param1="1f629"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f629.svg"><span
+				class="fr-sr-only">Weary face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Sleepy face" role="button"
+				data-param1="1f62a"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62a.svg"><span
+				class="fr-sr-only">Sleepy face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Tired face" role="button"
+				data-param1="1f62b"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62b.svg"><span
+				class="fr-sr-only">Tired face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Grimacing face" role="button"
+				data-param1="1f62c"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62c.svg"><span
+				class="fr-sr-only">Grimacing face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Loudly crying face" role="button"
+				data-param1="1f62d"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62d.svg"><span
+				class="fr-sr-only">Loudly crying face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face with open mouth" role="button"
+				data-param1="1f62e"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62e.svg"><span
+				class="fr-sr-only">Face with open mouth&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Hushed face" role="button"
+				data-param1="1f62f"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f62f.svg"><span
+				class="fr-sr-only">Hushed face&nbsp;&nbsp;&nbsp;</span></span><br>
+			<span class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon"
+				title="Face with open mouth and cold sweat" role="button"
+				data-param1="1f630"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f630.svg"><span
+				class="fr-sr-only">Face with open mouth and cold
+					sweat&nbsp;&nbsp;&nbsp;</span></span><span class="fr-command fr-emoticon"
+				tabindex="-1" data-cmd="insertEmoticon"
+				title="Face screaming in fear" role="button" data-param1="1f631"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f631.svg"><span
+				class="fr-sr-only">Face screaming in fear&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Astonished face" role="button"
+				data-param1="1f632"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f632.svg"><span
+				class="fr-sr-only">Astonished face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Flushed face" role="button"
+				data-param1="1f633"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f633.svg"><span
+				class="fr-sr-only">Flushed face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Sleeping face" role="button"
+				data-param1="1f634"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f634.svg"><span
+				class="fr-sr-only">Sleeping face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Dizzy face" role="button"
+				data-param1="1f635"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f635.svg"><span
+				class="fr-sr-only">Dizzy face&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face without mouth" role="button"
+				data-param1="1f636"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f636.svg"><span
+				class="fr-sr-only">Face without mouth&nbsp;&nbsp;&nbsp;</span></span><span
+				class="fr-command fr-emoticon" tabindex="-1"
+				data-cmd="insertEmoticon" title="Face with medical mask"
+				role="button" data-param1="1f637"><img
+				src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f637.svg"><span
+				class="fr-sr-only">Face with medical mask&nbsp;&nbsp;&nbsp;</span></span>
+			<p style="font-size: 12px; text-align: center; padding: 0 5px;">
+				Emoji free by <a class="fr-link" tabindex="-1"
+					href="http://emojione.com/" target="_blank"
+					rel="nofollow noopener noreferrer" role="link"
+					aria-label="Open Emoji One website.">Emoji One</a>
+			</p>
+		</div>
+	</div>
+
+</body>
+</html>
