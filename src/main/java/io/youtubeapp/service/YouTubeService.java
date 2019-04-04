@@ -76,6 +76,7 @@ public class YouTubeService {
 				youtubeVideo.setThumbnailUrl(video.getSnippet().getThumbnails().getDefault().getUrl());
 				youtubeVideo.setPublishDate(video.getSnippet().getPublishedAt().toString());
 				youtubeVideo.setDescription(video.getSnippet().getDescription());
+				youtubeVideo.setChannelTitle(video.getSnippet().getChannelTitle());
 				youtubeVideo.setViewCount(video.getStatistics().getViewCount());
 				youtubeVideos.add(youtubeVideo);
 			}

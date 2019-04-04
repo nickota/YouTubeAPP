@@ -11,6 +11,7 @@ public class YouTubeVideo {
     private String thumbnailUrl;
     private String publishDate;
     private String description;
+    private String channelTitle;
     private BigInteger viewCount;
     
 	public String getTitle() {
@@ -49,5 +50,11 @@ public class YouTubeVideo {
 	public void setViewCount(BigInteger viewCount) {
 		this.viewCount = viewCount;
 	}
-    
+	public String getChannelTitle() {
+		return channelTitle;
+	}
+	public void setChannelTitle(String channelTitle) {
+		this.channelTitle = channelTitle;
+	}
+	
 }
