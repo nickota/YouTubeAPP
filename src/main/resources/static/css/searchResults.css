@@ -21,6 +21,7 @@ search list
 	padding: 20px;
 	display: flex;
 	width: 780px;
+	height: 178px;
 	margin: 20px auto 0 auto;
 	justify-content: flex-start;
 	font-family: 'Roboto', sans-serif;
@@ -80,16 +81,19 @@ h1 ~ span:before {
 	content: '';
 }
 
-.by {
-	text-transform: uppercase;
-}
-
 p.description {
 	color: var(- -description-text);
 	font-size: 0.9rem;
-	line-height: 2rem;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    margin-bottom: 0px;
 }
-
+.description-container {
+	overflow: hidden;
+	width: 100%;
+}
+	
 @media ( max-width : 779px) {
 	.result-container {
 		width: 100%;
