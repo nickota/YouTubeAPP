@@ -1,12 +1,18 @@
 package io.youtubeapp.model;
 
+import java.math.BigInteger;
+
 public class YouTubeVideo {
 	
+	//Resource representation
+	//https://developers.google.com/youtube/v3/docs/videos?hl=en#resource
 	private String title;
     private String url;
     private String thumbnailUrl;
     private String publishDate;
     private String description;
+    private String channelTitle;
+    private BigInteger viewCount;
     
 	public String getTitle() {
 		return title;
@@ -38,5 +44,17 @@ public class YouTubeVideo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+	public BigInteger getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(BigInteger viewCount) {
+		this.viewCount = viewCount;
+	}
+	public String getChannelTitle() {
+		return channelTitle;
+	}
+	public void setChannelTitle(String channelTitle) {
+		this.channelTitle = channelTitle;
+	}
+	
 }
