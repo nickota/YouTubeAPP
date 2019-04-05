@@ -1,0 +1,113 @@
+@import url("froala.css");
+
+/*
+search list
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root { -
+	-button: #cecdcd; -
+	-description-text: #6e6e6e;
+}
+
+.result-container {
+	background: #fafafa;
+	padding: 20px;
+	display: flex;
+	width: 780px;
+	margin: 20px auto 0 auto;
+	justify-content: flex-start;
+	font-family: 'Roboto', sans-serif;
+	box-shadow: 0 6px 18px 0 rgb(204, 204, 204);
+}
+
+.image {
+	position: relative;
+	cursor: pointer;
+}
+
+.watch-later {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font-size: 18px;
+	color: var(- -button);
+	background: rgba(0, 0, 0, .8);
+	padding: 3px 5px;
+	display: none;
+}
+
+.play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 30px;
+	color: var(- -button);
+	display: none;
+}
+
+.image:hover img ~ span {
+	display: block;
+}
+
+.result-details {
+	padding-left: 15px;
+	padding-top: 3px;
+}
+
+.result-details h1 {
+	font-size: 1.03rem;
+	line-height: 1.5rem;
+}
+
+.result-details h1 ~ span {
+	font-size: 0.8em;
+	color: var(- -description-text);
+}
+
+h1 ~ span:before {
+	content: ' • ';
+}
+
+.result-details>span:first-of-type:before {
+	content: '';
+}
+
+.by {
+	text-transform: uppercase;
+}
+
+p.description {
+	color: var(- -description-text);
+	font-size: 0.9rem;
+	line-height: 2rem;
+}
+
+@media ( max-width : 779px) {
+	.result-container {
+		width: 100%;
+	}
+}
+
+@media ( max-width : 400px) {
+	.container {
+		width: 100%;
+	}
+	.image {
+		flex: 1;
+	}
+	img {
+		display: block;
+		width: 100%;
+	}
+	.result-details {
+		display: none;
+	}
+}
