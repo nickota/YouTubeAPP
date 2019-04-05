@@ -1,12 +1,16 @@
 package io.youtubeapp.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import io.youtubeapp.model.YouTubeVideo;
+import io.youtubeapp.service.com.util.DateUtil;
+
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -74,14 +78,17 @@ public class YouTubeService {
 				youtubeVideo.setTitle(video.getSnippet().getTitle());
 				youtubeVideo.setUrl(createUrl(video.getId()));
 				youtubeVideo.setThumbnailUrl(video.getSnippet().getThumbnails().getDefault().getUrl());
-				youtubeVideo.setPublishDate(video.getSnippet().getPublishedAt().toString());
+				LocalDate publishedAt = DateUtil.toLocalDate(video.getSnippet().getPublishedAt());
+				String passedMonths = Long.toString(Period.between(publishedAt, LocalDate.now()).toTotalMonths());
+				youtubeVideo.setPublishDate(passedMonths);
 				youtubeVideo.setDescription(video.getSnippet().getDescription());
 				youtubeVideo.setChannelTitle(video.getSnippet().getChannelTitle());
 				youtubeVideo.setViewCount(video.getStatistics().getViewCount());
 				youtubeVideos.add(youtubeVideo);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			return null;
 		}
 		return youtubeVideos;
 	}
