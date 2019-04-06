@@ -1,6 +1,7 @@
 package io.youtubeapp.model;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
 
 public class YouTubeVideo {
 
@@ -9,7 +10,7 @@ public class YouTubeVideo {
 	private String title;
 	private String url;
 	private String thumbnailUrl;
-	private String publishDate;
+	private LocalDate publishDate;
 	private String description;
 	private String channelTitle;
 	private BigInteger viewCount;
@@ -32,10 +33,10 @@ public class YouTubeVideo {
 	public void setThumbnailUrl(String thumbnailUrl) {
 		this.thumbnailUrl = thumbnailUrl;
 	}
-	public String getPublishDate() {
+	public LocalDate getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(String publishDate) {
+	public void setPublishDate(LocalDate publishDate) {
 		this.publishDate = publishDate;
 	}
 	public String getDescription() {
