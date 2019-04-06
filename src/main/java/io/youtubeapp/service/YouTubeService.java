@@ -1,8 +1,6 @@
 package io.youtubeapp.service;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,9 +76,7 @@ public class YouTubeService {
 				youtubeVideo.setTitle(video.getSnippet().getTitle());
 				youtubeVideo.setUrl(createUrl(video.getId()));
 				youtubeVideo.setThumbnailUrl(video.getSnippet().getThumbnails().getDefault().getUrl());
-				LocalDate publishedAt = DateUtil.toLocalDate(video.getSnippet().getPublishedAt());
-				String passedMonths = Long.toString(Period.between(publishedAt, LocalDate.now()).toTotalMonths());
-				youtubeVideo.setPublishDate(passedMonths);
+				youtubeVideo.setPublishDate(DateUtil.toLocalDate(video.getSnippet().getPublishedAt()));
 				youtubeVideo.setDescription(video.getSnippet().getDescription());
 				youtubeVideo.setChannelTitle(video.getSnippet().getChannelTitle());
 				youtubeVideo.setViewCount(video.getStatistics().getViewCount());
@@ -97,4 +93,6 @@ public class YouTubeService {
 		//Below is the relation between videoid and url
 		return "http://www.youtube.com/embed/" + videoId;
 	}
+	
+	
 }

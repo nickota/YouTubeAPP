@@ -1,11 +1,12 @@
 package io.youtubeapp.service.com.util;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import com.google.api.client.util.DateTime;
 
 
-public class DateUtil {
+public final class DateUtil {
 
 	public static LocalDate toLocalDate(DateTime dt) {
 		try {
@@ -17,5 +18,16 @@ public class DateUtil {
 			return null;
 		}
 	}
+	
+	public static int calculatePassedMonths(LocalDate fromDate) {
+		return (int)Period.between(fromDate, LocalDate.now()).toTotalMonths();
+	}
 
+	public static String yearOrMonth(int months) {
+		if (months < 12) {
+			return months + " months";
+		} else {
+			return months % 12 + " years";
+		}
+	}
 }
