@@ -41,7 +41,7 @@
 					<div class="result-details">
 						<h1 th:text="${video.title}">Title Text</h1>
 						<span class="by" th:text="'by ' + ${video.channelTitle}"></span> <span class="views" th:text="${video.viewCount} + ' views'"></span>
-						<span class="posted" th:text="${T(io.youtubeapp.service.com.util.DateUtil).yearOrMonth(calculatePassedMonths(${video.publishDate}) + ' ago'"></span>
+						<span class="posted" th:text="${video.getElapsedTime()}"></span>
 						<div class="description-container">
 							<p th:text="${video.description}" class="description"></p>
 						</div>

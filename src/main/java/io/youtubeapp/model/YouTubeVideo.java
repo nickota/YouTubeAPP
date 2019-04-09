@@ -3,6 +3,8 @@ package io.youtubeapp.model;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
+import io.youtubeapp.service.com.util.DateUtil;
+
 public class YouTubeVideo {
 
 	//Resource representation
@@ -15,6 +17,11 @@ public class YouTubeVideo {
 	private String channelTitle;
 	private BigInteger viewCount;
 
+	//return "~years ago" or "~months ago"
+	public String getElapsedTime() {
+		return DateUtil.getElapsedTime(publishDate);
+	}
+	
 	public String getTitle() {
 		return title;
 	}
