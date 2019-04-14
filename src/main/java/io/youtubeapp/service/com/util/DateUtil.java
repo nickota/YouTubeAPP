@@ -22,49 +22,15 @@ public final class DateUtil {
 		try {
 			DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 			return LocalDate.parse(dt.toStringRfc3339(), f);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-
-	/**
-	 * Get elapsed days, months or years from fromDate.
-	 *  
-	 * @param LocalDate fromDate
-	 * @return "~days ago"/"~months ago"/"~years ago"
-	 */
-	public static String getElapsedTime(LocalDate fromDate) {
-		int passedMonths = calculatePassedMonths(fromDate);
-		if (passedMonths == 0) {
-			int passedDays = calculatePassedDays(fromDate);
-			return passedDays + " days ago";
-		} else {
-			return toYearOrMonthAgo(passedMonths);
-		}
-	}
 	
-	
-	/**
-	 * Calculate passed days from fromDate using Period class.
-	 * 
-	 * @param LocalDate fromDate
-	 * @return int number of passed days
-	 */
-	public static int calculatePassedDays(LocalDate fromDate) {
-		return Period.between(fromDate, LocalDate.now()).getDays();
+	public static Period calculateElapsedTime(LocalDate fromDate) {
+		return Period.between(fromDate, LocalDate.now());
 	}
-
-	/**
-	 * Calculate passed months from fromDate using Period class.
-	 * 
-	 * @param LocalDate fromDate
-	 * @return int number of passed months
-	 */
-	public static int calculatePassedMonths(LocalDate fromDate) {
-		return (int)Period.between(fromDate, LocalDate.now()).toTotalMonths();
-	}
-
 	
 	/**
 	 * Exchange int months to String "months ago" or "years ago"
