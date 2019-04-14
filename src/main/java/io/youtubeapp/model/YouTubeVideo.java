@@ -17,9 +17,40 @@ public class YouTubeVideo {
 	private String channelTitle;
 	private BigInteger viewCount;
 
-	//return "~years ago" or "~months ago"
+	/**
+	 * Calculate elapsed time from publishedDate.
+	 * 
+	 * @return
+	 * 	0 months elapsed →　~days ago
+	 * 	1 ~ 11 months elapsed →　~months ago
+	 * 	12~ months elapsed ~years ago
+	 */
 	public String getElapsedTime() {
 		return DateUtil.getElapsedTime(publishDate);
+	}
+	
+	/**
+	 * Returns viewCount.
+	 * 
+	 * @return
+	 *	~999 → viewCount
+	 *	1000 ~ 99999 → (viewCount / 1000) K
+	 *	1000000 ~ → (viewCount / 1000000) M
+	 */
+	public String viewCountToKM() {
+		BigInteger m = new BigInteger("1000000");
+		BigInteger k = new BigInteger("1000");
+		BigInteger one = new BigInteger("1");
+		//more than 1000000
+		if (viewCount.divide(m).compareTo(one) >= 0) {
+			return viewCount.divide(m).toString() + "M";
+		}
+		//1000~99999
+		if (viewCount.divide(k).compareTo(one) >= 0) {
+			return viewCount.divide(k).toString() + "K";
+		}
+		//~999
+		return viewCount.toString();
 	}
 	
 	public String getTitle() {
