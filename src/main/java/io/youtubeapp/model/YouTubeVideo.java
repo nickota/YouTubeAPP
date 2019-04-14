@@ -2,6 +2,7 @@ package io.youtubeapp.model;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.Period;
 
 import io.youtubeapp.service.com.util.DateUtil;
 
@@ -26,9 +27,25 @@ public class YouTubeVideo {
 	 * 	12~ months elapsed ~years ago
 	 */
 	public String getElapsedTime() {
-		return DateUtil.getElapsedTime(publishDate);
+		Period elapsedTime = DateUtil.calculateElapsedTime(publishDate); 
+		if (elapsedTime.getYears() >= 1) {
+			return toYearYearsAgo(elapsedTime.getYears());
+		} else if(elapsedTime.getMonths() >= 1) {
+			return toMonthMonthsAgo(elapsedTime.getMonths());
+		} else {
+			return toDayDaysAgo(elapsedTime.getDays());
+		}
 	}
-	
+	private String toDayDaysAgo(int day) {
+		return day > 1 ? day + " days ago" : day + " day ago";
+	}
+	private String toYearYearsAgo(int year) {
+		return year > 1 ? year + " years ago" : year + " year ago";
+	}
+	private String toMonthMonthsAgo(int month) {
+		return month > 1 ? month + " months ago" : month + " month ago";
+	}
+
 	/**
 	 * Returns viewCount.
 	 * 
