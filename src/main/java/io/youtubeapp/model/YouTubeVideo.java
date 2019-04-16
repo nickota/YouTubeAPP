@@ -37,13 +37,13 @@ public class YouTubeVideo {
 		}
 	}
 	private String toDayDaysAgo(int day) {
-		return day > 1 ? day + " days ago" : day + " day ago";
+		return (day > 1) ? (day + " days ago") : (day + " day ago");
 	}
 	private String toYearYearsAgo(int year) {
-		return year > 1 ? year + " years ago" : year + " year ago";
+		return (year > 1) ? (year + " years ago") : (year + " year ago");
 	}
 	private String toMonthMonthsAgo(int month) {
-		return month > 1 ? month + " months ago" : month + " month ago";
+		return (month > 1) ? (month + " months ago") : (month + " month ago");
 	}
 
 	/**
@@ -57,13 +57,12 @@ public class YouTubeVideo {
 	public String viewCountToKM() {
 		BigInteger m = new BigInteger("1000000");
 		BigInteger k = new BigInteger("1000");
-		BigInteger one = new BigInteger("1");
 		//more than 1000000
-		if (viewCount.divide(m).compareTo(one) >= 0) {
+		if (viewCount.divide(m).compareTo(BigInteger.ONE) >= 0) {
 			return viewCount.divide(m).toString() + "M";
 		}
 		//1000~99999
-		if (viewCount.divide(k).compareTo(one) >= 0) {
+		if (viewCount.divide(k).compareTo(BigInteger.ONE) >= 0) {
 			return viewCount.divide(k).toString() + "K";
 		}
 		//~999
