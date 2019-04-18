@@ -17,6 +17,9 @@ public class YouTubeVideo {
 	private String description;
 	private String channelTitle;
 	private BigInteger viewCount;
+	
+	private static BigInteger m = new BigInteger("1000000");
+	private static BigInteger k = new BigInteger("1000");
 
 	/**
 	 * Calculate elapsed time from publishedDate.
@@ -55,14 +58,12 @@ public class YouTubeVideo {
 	 *	1000000 ~ → (viewCount / 1000000) M
 	 */
 	public String viewCountToKM() {
-		BigInteger m = new BigInteger("1000000");
-		BigInteger k = new BigInteger("1000");
 		//more than 1000000
-		if (viewCount.divide(m).compareTo(BigInteger.ONE) >= 0) {
+		if (viewCount.compareTo(m) >= 0) {
 			return viewCount.divide(m).toString() + "M";
 		}
 		//1000~99999
-		if (viewCount.divide(k).compareTo(BigInteger.ONE) >= 0) {
+		if (viewCount.compareTo(k) >= 0) {
 			return viewCount.divide(k).toString() + "K";
 		}
 		//~999
