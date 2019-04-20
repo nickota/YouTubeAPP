@@ -18,8 +18,8 @@ public class YouTubeVideo {
 	private String channelTitle;
 	private BigInteger viewCount;
 	
-	private static BigInteger m = new BigInteger("1000000");
-	private static BigInteger k = new BigInteger("1000");
+	private static final BigInteger m = new BigInteger("1000000");
+	private static final BigInteger k = new BigInteger("1000");
 
 	/**
 	 * Calculate elapsed time from publishedDate.
@@ -33,11 +33,11 @@ public class YouTubeVideo {
 		Period elapsedTime = DateUtil.calculateElapsedTime(publishDate); 
 		if (elapsedTime.getYears() >= 1) {
 			return toYearYearsAgo(elapsedTime.getYears());
-		} else if(elapsedTime.getMonths() >= 1) {
-			return toMonthMonthsAgo(elapsedTime.getMonths());
-		} else {
-			return toDayDaysAgo(elapsedTime.getDays());
 		}
+		if(elapsedTime.getMonths() >= 1) {
+			return toMonthMonthsAgo(elapsedTime.getMonths());
+		}
+		return toDayDaysAgo(elapsedTime.getDays());
 	}
 	private String toDayDaysAgo(int day) {
 		return (day > 1) ? (day + " days ago") : (day + " day ago");
@@ -50,23 +50,29 @@ public class YouTubeVideo {
 	}
 
 	/**
-	 * Returns viewCount.
+	 * Returns viewCount with "K" or "M".
 	 * 
 	 * @return
-	 *	~999 → viewCount
-	 *	1000 ~ 99999 → (viewCount / 1000) K
+	 *  ~-1 → 0<br>
+	 *	~999 → viewCount<br>
+	 *	1000 ~ 99999 → (viewCount / 1000) K<br>
 	 *	1000000 ~ → (viewCount / 1000000) M
 	 */
 	public String viewCountToKM() {
-		//more than 1000000
+		// ~-1 or null
+		if (viewCount.compareTo(BigInteger.ZERO) < 0 || viewCount == null) {
+			return "0";
+		}
+		// 1,000,000 ~
 		if (viewCount.compareTo(m) >= 0) {
 			return viewCount.divide(m).toString() + "M";
 		}
-		//1000~99999
+		// 1,000 ~ 99,999
 		if (viewCount.compareTo(k) >= 0) {
 			return viewCount.divide(k).toString() + "K";
 		}
-		//~999
+
+		// 0 ~ 999
 		return viewCount.toString();
 	}
 	
