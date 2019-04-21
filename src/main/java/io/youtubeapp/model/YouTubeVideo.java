@@ -48,7 +48,7 @@ public class YouTubeVideo {
 	private String toMonthMonthsAgo(int month) {
 		return (month > 1) ? (month + " months ago") : (month + " month ago");
 	}
-
+	
 	/**
 	 * Returns viewCount with "K" or "M".
 	 * 
@@ -59,7 +59,7 @@ public class YouTubeVideo {
 	 *	1000000 ~ → (viewCount / 1000000) M
 	 */
 	public String viewCountToKM() {
-		// ~-1 or null
+		// ~-1
 		if (viewCount.compareTo(BigInteger.ZERO) < 0 || viewCount == null) {
 			return "0";
 		}
